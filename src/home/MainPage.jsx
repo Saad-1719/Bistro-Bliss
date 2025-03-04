@@ -1,8 +1,9 @@
 import React from "react";
 import Wrapper from "../components/Wrapper";
+import AboutSection from "../components/AboutSection";
 const MainPage = () => {
 	return (
-		<section className='h-[calc(100lvh-56px)] bg-[url("public/hero-img.png")] bg-center object-cover'>
+		<section className='h-[calc(100lvh-56px)] bg-[url("/hero-img.png")] bg-center object-cover'>
 			{/* hero section */}
 			<div className="max-w-2xl mx-auto flex flex-col items-center justify-center h-full text-center space-y-4">
 				<h1 className="text-8xl headline">Best food for your taste</h1>
@@ -22,7 +23,7 @@ const MainPage = () => {
 					</h1>
 					<div className="grid grid-cols-4 gap-4">
 						{/* card 01 */}
-						<div className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
+						<article className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
 							<span className="p-4 border rounded-full bg-[#efefef]">
 								<svg
 									width="50"
@@ -98,9 +99,9 @@ const MainPage = () => {
 							<button className="text-base font-bold text-[var(--button-color)] ">
 								Explore Menu
 							</button>
-						</div>
+						</article>
 						{/* card 02 */}
-						<div className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
+						<article className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
 							<span className="p-4 border rounded-full bg-[#efefef]">
 								<svg
 									width="50"
@@ -124,9 +125,9 @@ const MainPage = () => {
 							<button className="text-base font-bold text-[var(--button-color)] ">
 								Explore Menu
 							</button>
-						</div>
+						</article>
 						{/* card 03 */}
-						<div className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
+						<article className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
 							<span className="p-4 border rounded-full bg-[#efefef]">
 								<svg
 									width="50"
@@ -152,9 +153,9 @@ const MainPage = () => {
 							<button className="text-base font-bold text-[var(--button-color)] ">
 								Explore Menu
 							</button>
-						</div>
+						</article>
 						{/* card 04 */}
-						<div className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
+						<article className="border rounded-2xl px-6 py-6 flex flex-col items-center justify-center text-center space-y-4 ">
 							<span className="p-4 border rounded-full bg-[#efefef]">
 								<svg
 									width="50"
@@ -182,114 +183,208 @@ const MainPage = () => {
 							<button className="text-base font-bold text-[var(--button-color)] ">
 								Explore Menu
 							</button>
-						</div>
+						</article>
 					</div>
 				</div>
 			</Wrapper>
 
 			{/* about us */}
+			<AboutSection className="bg-[#F9F9F7]" showButton={true} imgUrl={"src/assets/food_img.png"}/>
+
+			{/* services */}
+			<div className="py-24 ">
+				<Wrapper>
+					<h1 className="pb-10 text-6xl max-w-2xl headline">
+						We also offer unique services for your events
+					</h1>
+					<article className="grid grid-cols-4 gap-10">
+						<article className="flex flex-col space-y-3  text-left">
+							<img
+								src="/catering.png"
+								alt=""
+								className="rounded-2xl w-80 h-auto"
+							/>
+							<h2 className="font-bold text-2xl">Catering</h2>
+							<p>
+								In the new era of technology we look in the future with
+								certainty for life.
+							</p>
+						</article>
+						<article className="flex flex-col space-y-3  text-left">
+							<img
+								src="/bd_party.png"
+								alt=""
+								className="rounded-2xl w-80 h-auto"
+							/>
+							<h2 className="font-bold text-2xl">Birthdays</h2>
+							<p>
+								In the new era of technology we look in the future with
+								certainty for life.
+							</p>
+						</article>
+						<article className="flex flex-col space-y-3  text-left">
+							<img
+								src="/weddings.png"
+								alt=""
+								className="rounded-2xl w-80 h-auto"
+							/>
+							<h2 className="font-bold text-2xl">Weddings</h2>
+							<p>
+								In the new era of technology we look in the future with
+								certainty for life.
+							</p>
+						</article>
+						<article className="flex flex-col space-y-3  text-left">
+							<img
+								src="/events.png"
+								alt=""
+								className="rounded-2xl w-80 h-full object-cover"
+							/>
+							<h2 className="font-bold text-2xl">Events</h2>
+							<p>
+								In the new era of technology we look in the future with
+								certainty for life.
+							</p>
+						</article>
+					</article>
+				</Wrapper>
+			</div>
+			{/* Food Delivery */}
 			<div className="py-24 bg-[#F9F9F7]">
-				<Wrapper className="flex items-center justify-center gap-20 ">
-					<div className=" relative flex items-center justify-center  ">
-						<img
-							src="src/assets/food_img.png"
-							alt=""
-							className="rounded-2xl w-[550px] h-auto items-start justify-start"
-						/>
-						<div className="top-[55%] left-[40%] absolute bg-[var(--primary-color)] text-white p-12 rounded-xl max-w-md">
-                            <p className="font-bold text-lg py-6">Come and visit us</p>
-                            <div className="space-y-3">
+				<Wrapper className="flex  justify-between gap-6">
+					<article className="flex-1">
+						<img src="/food_delivery_img.png" alt="" className=" h-auto w-[600px]" />
+					</article>
+					<article className="space-y-4 max-w-lg flex flex-col justify-center">
+						<h1 className="text-6xl headline">Fastest Food Delivery in City</h1>
+						<p className="text-base">Our visual designer lets you quickly and of drag a down your way to customapps for both keep desktop. </p>
+						<ul className="space-y-3">
+							<li className="flex space-x-4 items-center">
+								<svg
+									width="30"
+									height="30"
+									viewBox="0 0 30 30"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<rect width="30" height="30" rx="15" fill="#AD343E" />
+									<rect
+										width="15.07"
+										height="15.07"
+										transform="translate(7 7.00015)"
+										fill="#AD343E"
+									/>
+									<path
+										d="M14.535 12.0235V14.5352L16.4188 16.4189M20.1863 14.5352C20.1863 17.6563 17.6561 20.1864 14.535 20.1864C11.4139 20.1864 8.88379 17.6563 8.88379 14.5352C8.88379 11.4141 11.4139 8.88391 14.535 8.88391C17.6561 8.88391 20.1863 11.4141 20.1863 14.5352Z"
+										stroke="white"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+								<span className="text-xl text-black">Delivery within 30 minutes</span>
+							</li>
+							<li className="flex space-x-4 items-center">
+								<svg
+									width="30"
+									height="30"
+									viewBox="0 0 30 30"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<rect width="30" height="30" rx="15" fill="#AD343E" />
+									<rect
+										width="15.07"
+										height="15.07"
+										transform="translate(7 7.00015)"
+										fill="#AD343E"
+									/>
+									<path
+										d="M12.6513 15.791L16.4188 12.0235M12.9653 12.3375H12.9716M16.1049 15.477H16.1112M18.9305 20.1864V10.1397C18.9305 9.44617 18.3682 8.88391 17.6746 8.88391H11.3955C10.7019 8.88391 10.1396 9.44617 10.1396 10.1397V20.1864L12.3374 18.9306L14.5351 20.1864L16.7328 18.9306L18.9305 20.1864ZM13.2792 12.3375C13.2792 12.5108 13.1387 12.6514 12.9653 12.6514C12.7919 12.6514 12.6513 12.5108 12.6513 12.3375C12.6513 12.1641 12.7919 12.0235 12.9653 12.0235C13.1387 12.0235 13.2792 12.1641 13.2792 12.3375ZM16.4188 15.477C16.4188 15.6504 16.2783 15.791 16.1049 15.791C15.9315 15.791 15.7909 15.6504 15.7909 15.477C15.7909 15.3036 15.9315 15.1631 16.1049 15.1631C16.2783 15.1631 16.4188 15.3036 16.4188 15.477Z"
+										stroke="white"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+								<span className="text-xl text-black">Best Offer and Prices</span>
+							</li>
+							<li className="flex space-x-4 items-center">
+								<svg
+									width="30"
+									height="30"
+									viewBox="0 0 30 30"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<rect width="30" height="30" rx="15" fill="#AD343E" />
+									<rect
+										width="15.07"
+										height="15.07"
+										transform="translate(7 7.00012)"
+										fill="#AD343E"
+									/>
+									<path
+										d="M8.88379 8.88385H10.1396L10.3908 10.1397M11.3955 15.163H17.6746L20.1863 10.1397H10.3908M11.3955 15.163L10.3908 10.1397M11.3955 15.163L9.95571 16.6028C9.56014 16.9983 9.8403 17.6747 10.3997 17.6747H17.6746M17.6746 17.6747C16.981 17.6747 16.4188 18.2369 16.4188 18.9305C16.4188 19.6241 16.981 20.1863 17.6746 20.1863C18.3682 20.1863 18.9305 19.6241 18.9305 18.9305C18.9305 18.2369 18.3682 17.6747 17.6746 17.6747ZM12.6513 18.9305C12.6513 19.6241 12.089 20.1863 11.3955 20.1863C10.7019 20.1863 10.1396 19.6241 10.1396 18.9305C10.1396 18.2369 10.7019 17.6747 11.3955 17.6747C12.089 17.6747 12.6513 18.2369 12.6513 18.9305Z"
+										stroke="white"
+										stroke-width="1.5"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
 
-							<span className="flex space-x-5 items-center justify-left">
-								<svg
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M3 5C3 3.89543 3.89543 3 5 3H8.27924C8.70967 3 9.09181 3.27543 9.22792 3.68377L10.7257 8.17721C10.8831 8.64932 10.6694 9.16531 10.2243 9.38787L7.96701 10.5165C9.06925 12.9612 11.0388 14.9308 13.4835 16.033L14.6121 13.7757C14.8347 13.3306 15.3507 13.1169 15.8228 13.2743L20.3162 14.7721C20.7246 14.9082 21 15.2903 21 15.7208V19C21 20.1046 20.1046 21 19 21H18C9.71573 21 3 14.2843 3 6V5Z"
-										stroke="white"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-								</svg>
-								<span>0987654</span>
-							</span>
-							<span className="flex space-x-5  items-center justify-left">
-								<svg
-									width="20"
-									height="16"
-									viewBox="0 0 20 16"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M1 4L8.8906 9.2604C9.5624 9.70827 10.4376 9.70827 11.1094 9.2604L19 4M3 15H17C18.1046 15 19 14.1046 19 13V3C19 1.89543 18.1046 1 17 1H3C1.89543 1 1 1.89543 1 3V13C1 14.1046 1.89543 15 3 15Z"
-										stroke="white"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-								</svg>
+								<span className="text-xl text-black">Online Services Available</span>
+							</li>
+						</ul>
+					</article>
+				</Wrapper>
+			</div>
+			{/* Customer Reviews */}
+			<div className="py-24">
+				<Wrapper>
+				<h1 className="pb-10 text-6xl text-center headline">
+						What Our Customer Says
+					</h1>
+					<div className="grid grid-cols-3 gap-10">
+						<article className="p-10 bg-[#F9F9F7] rounded-2xl">
+							<h2 className="text-2xl font-bold text-[var(--button-color)]">“The best restaurant”</h2>
+							<p className="text-lg py-4">Last night, we dined at place and were simply blown away. From the moment we stepped in, we were enveloped in an inviting atmosphere and greeted with warm smiles.</p>
+							<hr className="py-4 border-[var(--primary-color)]"/>
+							<article className="flex  items-center space-x-4 py-2"><img src="src/assets/sophie.png" alt="" />
+								<span>
 
-								<span>happytummy@restaurant.com</span>
-							</span>
-							<span className="flex space-x-5  items-start justify-left">
-								<svg
-									width="44"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M17.6569 16.6569C16.7202 17.5935 14.7616 19.5521 13.4138 20.8999C12.6327 21.681 11.3677 21.6814 10.5866 20.9003C9.26234 19.576 7.34159 17.6553 6.34315 16.6569C3.21895 13.5327 3.21895 8.46734 6.34315 5.34315C9.46734 2.21895 14.5327 2.21895 17.6569 5.34315C20.781 8.46734 20.781 13.5327 17.6569 16.6569Z"
-										stroke="white"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-									<path
-										d="M15 11C15 12.6569 13.6569 14 12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11Z"
-										stroke="white"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-								</svg>
-								<span className="max-w-md">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Minima, molestiae.
+								<h2 className="font-bold text-black">Sophire Robson</h2>
+								<h3 className="text-black">Los Angeles, CA</h3>
 								</span>
-                                </span>
-                                </div>
+							</article>
+						</article>
+						<article className="p-10 bg-[#F9F9F7] rounded-2xl">
+							<h2 className="text-2xl font-bold text-[var(--button-color)]">“Simply delicious”</h2>
+							<p className="text-lg py-4">Place exceeded my expectations on all fronts. The ambiance was cozy and relaxed, making it a perfect venue for our anniversary dinner. Each dish was prepared and beautifully presented.</p>
+							<hr className="py-4"/>
+							<article className="flex  items-center space-x-4 py-2"><img src="src/assets/matt.png" alt="" />
+								<span>
 
-						</div>
-					</div>
-					<div className="space-y-5 max-w-xl px-6 py-28 ">
-						<h1 className="text-6xl headline ">
-							We provide healthy food for your family.
-						</h1>
-						<p className="text-lg">
-							Our story began with a vision to create a unique dining experience
-							that merges fine dining, exceptional service, and a vibrant
-							ambiance. Rooted in city's rich culinary culture, we aim to honor
-							our local roots while infusing a global palate.
-						</p>
-						<p className="text-black">
-							At place, we believe that dining is not just about food, but also
-							about the overall experience. Our staff, renowned for their warmth
-							and dedication, strives to make every visit an unforgettable
-							event.
-						</p>
-						<button className="text-black px-5 py-2 rounded-full border mt-6 ">
-							More About Us
-						</button>
+								<h2 className="font-bold text-black">Matt Cannon</h2>
+								<h3 className="text-black">San Diego, CA</h3>
+								</span>
+							</article>
+						</article>
+						<article className="p-10 bg-[#F9F9F7] rounded-2xl">
+							<h2 className="text-2xl font-bold text-[var(--button-color)]">“One of a kind restaurant”</h2>
+							<p className="text-lg py-4">The culinary experience at place is first to none. The atmosphere is vibrant, the food - nothing short of extraordinary. The food was the highlight of our evening. Highly recommended.</p>
+							<hr className="py-4"/>
+							<article className="flex  items-center space-x-4 py-2"><img src="src/assets/andy.png" alt="" />
+								<span>
+
+								<h2 className="font-bold text-black">Andy Smith</h2>
+								<h3 className="text-black">San Francisco, CA</h3>
+								</span>
+							</article>
+						</article>
 					</div>
 				</Wrapper>
+
 			</div>
 		</section>
 	);
