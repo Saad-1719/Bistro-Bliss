@@ -8,7 +8,7 @@ const AboutSection = ({imgUrl, showButton, className}) => {
 					<article className=" relative flex items-center justify-center  ">
 						<img
 							src={imgUrl}
-							alt=""
+							alt="image"
 							className="rounded-2xl w-[550px] h-auto items-start justify-start"
 						/>
 						<div className="top-[55%] left-[40%] absolute bg-[var(--primary-color)] text-white p-12 rounded-xl max-w-md">
