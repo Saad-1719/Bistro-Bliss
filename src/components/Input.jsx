@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Input = ({name, id, type = 'text', label, className = '', ...props}) => {
+const Input = ({ name, id, type = 'text', label, className = '', labelClassName='', divClassName='',...props }) => {
   return (
-      <>
-          <label htmlFor={id} className="block mb-1">{label}</label>
+      <div className={`${divClassName}`}>
+      <label htmlFor={id} className={`block mb-1 ${labelClassName}`}>{label}</label>
           <input 
             type={type} 
             name={name} 
@@ -11,7 +11,7 @@ const Input = ({name, id, type = 'text', label, className = '', ...props}) => {
             className={`${className}`} 
             {...props} 
           />
-      </>
+      </div>
   )
 }
 
