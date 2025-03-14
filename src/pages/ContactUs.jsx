@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Wrapper from "../components/Wrapper";
 import Input from "../components/Input";
+import { toast,Toaster } from "react-hot-toast";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const ContactUs = () => {
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,14 +25,56 @@ const ContactUs = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formIsValid = validateForm();
-    if (formIsValid) {
-      setFormData({ Name: "", Email: "", Subject: "", Message: "" });
-      setTouched({});
+  
+
+  const submitMessage = async () =>
+  {
+    setSubmitting(true);
+    try {
+      const response = await fetch("http://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        toast.error("Failed to send message", {
+					duration: 3000,
+					style: {
+						background: "#D84040",
+						color: "#ffff",
+						fontWeight: "semibold",
+						padding: "10px",
+						borderRadius: "8px",
+					},
+				});
+        const errorData = await response.json();
+        throw new Error(errorData.message);
+        
+      }
+      else {
+        setFormData({ Name: "", Email: "", Subject: "", Message: "" });
+        setTouched({});
+        toast.success("Message Sent Successfully", {
+					duration: 3000,
+					style: {
+						background: "#018749",
+						color: "#ffff",
+						fontWeight: "semibold",
+						padding: "10px",
+						borderRadius: "8px",
+					},
+				});
+      }
+    } catch (error) {
+      console.error(error);
+      
     }
-  };
+    finally {
+      setSubmitting(false);
+    }
+  }
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
@@ -89,9 +133,19 @@ const ContactUs = () => {
     );
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formIsValid = validateForm();
+
+    if (formIsValid) {
+     submitMessage();
+    }
+  };
+
   return (
     <section className="min-h-screen bg-[linear-gradient(to_bottom,_#F9F9F7_50%,_#ffffff_50%)] sm:bg-[linear-gradient(to_bottom,_#F9F9F7_60%,_#ffffff_60%)]">
       <Wrapper className="py-12 sm:py-16 md:py-24 px-4 sm:px-6">
+        <Toaster reverseOrder={ false} position="top-center" />
         <div className="text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl headline">
             Contact Us
