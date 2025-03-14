@@ -1,12 +1,48 @@
-# React + Vite
+## Bistro Bliss
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bistro Bliss is a modern web application designed to enhance the dining experience by providing users with an intuitive interface to explore menus, make reservations, and discover new dining spots. Built with React and Vite, this project leverages the latest web technologies to deliver a fast and responsive user experience.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse and search for restaurants
+- View detailed menus and prices
+- Make online reservations
+- Read and write reviews
+- User authentication and profiles
 
-## Expanding the ESLint configuration
+### Getting Started
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To get started with the project, follow these steps:
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/bistro-bliss.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd bistro-bliss
+    ```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+4. Start the development server:
+    ```sh
+    npm run dev
+    ```
+
+### Technologies Used
+
+- React
+- Vite
+- ESLint
+- Babel
+- SWC
+
+### Contributing
+
+We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more details.
+
+### License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
