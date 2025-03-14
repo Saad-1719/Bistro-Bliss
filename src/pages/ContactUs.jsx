@@ -244,7 +244,7 @@ const ContactUs = () => {
               }`}
               disabled={!getFormValidity()}
             >
-              Send
+              {submitting ? "Sending..." : "Send Message"}
             </button>
           </form>
           <div className="flex flex-col sm:flex-row justify-between gap-6 sm:gap-4 pt-6 sm:pt-8">
