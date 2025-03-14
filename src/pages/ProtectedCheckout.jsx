@@ -5,9 +5,11 @@ import UserFormPage from "./UserFormPage";
 
 const ProtectedCheckout = () => {
   const { cart } = useContext(cartContext);
+  const orderPlaced = sessionStorage.getItem("orderPlaced");
 
   if (cart.length === 0) {
-    return <Navigate to="/cart" replace />;
+    
+    return <Navigate to="/" replace />;
   }
 
   return <UserFormPage />;
