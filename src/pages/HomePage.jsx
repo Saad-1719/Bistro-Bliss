@@ -23,7 +23,7 @@ const MainPage = () => {
 
 			{/* menu section */}
 			<Wrapper>
-				<div className="py-8 sm:py-16">
+				<div className="py-8 sm:py-16" data-aos="fade-up">
 					<h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl pb-8 headline">
 						Browse Our Menu
 					</h1>

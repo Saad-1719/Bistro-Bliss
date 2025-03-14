@@ -8,6 +8,7 @@ import ContactUs from "./pages/ContactUs";
 import MenuPage from "./pages/MenuPage";
 import CartPage from "./pages/CartPage";
 import ProtectedCheckout from "./pages/ProtectedCheckout";
+import NotFound from "./components/NotFound";
 
 const App = () => {
 	return (
@@ -20,6 +21,7 @@ const App = () => {
 				<Route path="/contact" element={<ContactUs />} />
 				<Route path="/cart" element={<CartPage />} />
 				<Route path="/checkout" element={<ProtectedCheckout />} />
+				<Route path="*" element={<NotFound/>} />
 
 			</Routes>
 			<Footer />
