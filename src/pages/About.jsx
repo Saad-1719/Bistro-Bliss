@@ -9,7 +9,7 @@ const About = () => {
       <AboutSection
         className="bg-[#F9F9F7]"
         showButton={false}
-        imgUrl={"src/assets/food_img.png"}
+        imgUrl={"/food_img.png"}
       />
       <Wrapper>
         <section className="py-12 sm:py-16 md:py-24 flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-5 px-4">
@@ -267,7 +267,7 @@ const About = () => {
           </div>
           <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
             <img 
-              src="src/assets/about_page_img.png" 
+              src="/about_page_img.png" 
               alt="" 
               className="w-full max-w-[800px] h-auto"
             />

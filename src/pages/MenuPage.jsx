@@ -15,7 +15,7 @@ const MenuPage = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await fetch("http://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/meals");
+        const response = await fetch("http://localhost:8080/meals");
         if (!response.ok) {
           throw new Error("Failed to fetch menu items");
         }
@@ -90,7 +90,7 @@ const MenuPage = () => {
               key={item.id}
             >
               <img
-                src={`http://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/${item.image}`}
+                src={`http://localhost:8080/${item.image}`}
                 alt={item.name}
                 className="w-full h-40 sm:h-48 md:h-56 object-cover rounded-t-2xl"
               />

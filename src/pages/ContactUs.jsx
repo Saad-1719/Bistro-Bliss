@@ -31,7 +31,7 @@ const ContactUs = () => {
   {
     setSubmitting(true);
     try {
-      const response = await fetch("http://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/contact", {
+      const response = await fetch("http://localhost:8080/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

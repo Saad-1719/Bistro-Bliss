@@ -203,7 +203,7 @@ const MainPage = () => {
 			<AboutSection
 				className="bg-[#F9F9F7]"
 				showButton={true}
-				imgUrl={"src/assets/food_img.png"}
+				imgUrl={"/food_img.png"}
 			/>
 
 			{/* services */}

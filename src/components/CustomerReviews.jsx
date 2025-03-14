@@ -20,7 +20,7 @@ const CustomerReviews = () => {
             <hr className="py-4 border-[var(--primary-color)]"/>
             <article className="flex items-center space-x-4 py-2">
               <img 
-                src="src/assets/sophie.png" 
+                src="/sophie.png" 
                 alt="Sophie Robson" 
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
               />
@@ -47,7 +47,7 @@ const CustomerReviews = () => {
             <hr className="py-4"/>
             <article className="flex items-center space-x-4 py-2">
               <img 
-                src="src/assets/matt.png" 
+                src="/matt.png" 
                 alt="Matt Cannon"
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
               />
@@ -74,7 +74,7 @@ const CustomerReviews = () => {
             <hr className="py-4"/>
             <article className="flex items-center space-x-4 py-2">
               <img 
-                src="src/assets/andy.png" 
+                src="/andy.png" 
                 alt="Andy Smith"
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover"
               />
