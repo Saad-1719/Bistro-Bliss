@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const UserFormPage = () => {
 	useEffect(() => {
-		return () => sessionStorage.removeItem("orderPlaced"); // ✅ Clear on unmount
+		return () => sessionStorage.removeItem("orderPlaced"); 
   }, []);
   
 	const { cart, clearCart } = useContext(cartContext);
@@ -93,7 +93,7 @@ const UserFormPage = () => {
 	const submitOrder = async () => {
 		setIsSubmitting(true);
 		try {
-			const response = await fetch("https://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/orders", {
+			const response = await fetch("http://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/orders", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
