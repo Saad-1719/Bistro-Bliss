@@ -6,16 +6,16 @@ import toast, { Toaster } from "react-hot-toast";
 
 const UserFormPage = () => {
 	useEffect(() => {
-		return () => sessionStorage.removeItem("orderPlaced"); 
-  }, []);
-  
+		return () => sessionStorage.removeItem("orderPlaced");
+	}, []);
+
 	const { cart, clearCart } = useContext(cartContext);
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		phone: "",
-		street: "",
-		"postal-code": "",
+		area: "",
+		address: "",
 		city: "",
 		paymentMethod: "cod",
 	});
@@ -24,6 +24,8 @@ const UserFormPage = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [orderSuccess, setOrderSuccess] = useState(false);
 	const [orderError, setOrderError] = useState("");
+	const [loadingCities, setLoadingCities] = useState(false);
+	const [cities, setCities] = useState([]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -75,6 +77,41 @@ const UserFormPage = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (formData.city && cities.length > 0) {
+			const selectedCity = cities.find((c) => c.city === formData.city);
+			if (selectedCity && selectedCity.areas.length > 0) {
+				setFormData((prev) => ({
+					...prev,
+					area: selectedCity.areas[0].area_name,
+				}));
+			}
+		}
+	}, [formData.city, cities]);
+
+	useEffect(() => {
+		const getCities = async () => {
+			setLoadingCities(true);
+			try {
+				const response = await fetch("http://localhost:8080/cities");
+				if (!response.ok) {
+					throw new Error("Failed to fetch cities");
+				}
+
+				const data = await response.json();
+
+				setCities(data.cities); 
+
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setLoadingCities(false);
+			}
+		};
+		getCities();
+	}, []);
+	console.log(cities);
+
 	const validateForm = () => {
 		setTouched({ name: true, email: true, phone: true });
 		return ["name", "email", "phone"].every((field) =>
@@ -93,26 +130,29 @@ const UserFormPage = () => {
 	const submitOrder = async () => {
 		setIsSubmitting(true);
 		try {
-			const response = await fetch("https://bristo-bliss-backend-hosting-env.eba-z4tdcyhg.eu-north-1.elasticbeanstalk.com/orders", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					order: {
-						customer: {
-							name: formData.name,
-							email: formData.email,
-							phone: formData.phone,
-							street: formData.street,
-							"postal-code": formData["postal-code"],
-							city: formData.city,
-						},
-						items: cart,
-						paymentMethod: formData.paymentMethod,
+			const response = await fetch(
+				"http://localhost:8080/orders",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
 					},
-				}),
-			});
+					body: JSON.stringify({
+						order: {
+							customer: {
+								name: formData.name,
+								email: formData.email,
+								phone: formData.phone,
+								address: formData.address,
+								area: formData.area,
+								city: formData.city,
+							},
+							items: cart,
+							paymentMethod: formData.paymentMethod,
+						},
+					}),
+				}
+			);
 
 			if (response.ok) {
 				// Add toast notification before navigation
@@ -173,6 +213,7 @@ const UserFormPage = () => {
 		}
 	};
 
+
 	return (
 		<section className="min-h-screen bg-[linear-gradient(to_bottom,_#F9F9F7_50%,_#ffffff_50%)] sm:bg-[linear-gradient(to_bottom,_#F9F9F7_60%,_#ffffff_60%)]">
 			<Toaster position="top-center" reverseOrder={false} />
@@ -231,21 +272,8 @@ const UserFormPage = () => {
 									required
 								/>
 							</div>
-							<div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-4 w-full">
-								<Input
-									name="street"
-									type="text"
-									id="street"
-									label="Street"
-									placeholder="Enter your street"
-									divClassName="w-full"
-									className="rounded-full border border-[#DBDFD0] px-4 py-2 sm:py-3 w-full text-sm sm:text-base"
-									labelClassName="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base"
-									value={formData.street}
-									onChange={handleChange}
-									onBlur={handleBlur}
-									required
-								/>
+							{/* <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-4 w-full">
+								
 								<Input
 									name="postal-code"
 									type="text"
@@ -260,33 +288,80 @@ const UserFormPage = () => {
 									onBlur={handleBlur}
 									required
 								/>
-							</div>
-							<Input
+							</div> */}
+															<div className="flex flex-col  space-y-6 sm:space-y-0 sm:space-x-4 w-full">
+
+								<label htmlFor="city" className="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base">City</label>
+							<select
 								name="city"
-								type="text"
 								id="city"
-								label="City"
-								placeholder="Enter your city"
-								divClassName="w-full"
-								className="rounded-full border border-[#DBDFD0] px-4 py-2 sm:py-3 w-full text-sm sm:text-base"
-								labelClassName="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base"
+								className="rounded-full border border-[#DBDFD0] px-6 py-2 sm:py-3 w-full text-sm sm:text-base"
+								
 								value={formData.city}
 								onChange={handleChange}
 								onBlur={handleBlur}
 								required
-							/>
+								disabled={loadingCities}
+							>
+								<option value="">Select City</option>
+								{cities.map((cityObj, index) => (
+									<option key={index} value={cityObj.city}>
+										{cityObj.city}
+									</option>
+								))}
+									</select>
+									</div>
+									<div className="flex flex-col  space-y-6 sm:space-y-0 sm:space-x-4 w-full">
+								<label htmlFor="area" className="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base">Area</label>
+							<select
+								name="area"
+								id="area"
+								className="rounded-full border border-[#DBDFD0] px-4 py-2 sm:py-3 w-full text-sm sm:text-base"
+								value={formData.area}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								required
+								disabled={!formData.city || loadingCities}
+								>
+								<option value="">Select Area</option>
+
+								{cities
+									.find((cityObj) => cityObj.city === formData.city)
+									?.areas?.map((areaObj, index) => (
+										<option key={index} value={areaObj.area_name}>
+											{areaObj.area_name}
+										</option>
+									))}
+									</select>
+									</div>
+								<Input
+									name="address"
+									type="text"
+									id="address"
+									label="Address"
+									disabled={!formData.area}
+									placeholder={!formData.area  ? "Select city and area first" : "Enter your address"}
+									divClassName="w-full"
+									className="rounded-full border border-[#DBDFD0] px-4 py-2 sm:py-3 w-full text-sm sm:text-base"
+									labelClassName="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base"
+									value={formData.address}
+									onChange={handleChange}
+									onBlur={handleBlur}
+									required
+								/>
 							<Input
 								name="phone"
 								type="text"
 								id="phone"
 								label="Phone"
-								placeholder="Enter your phone number"
+								disabled={!formData.address}
+								placeholder={!formData.address ? "Enter your address first" : "Enter your phone number"}
 								divClassName="w-full"
 								className="rounded-full border border-[#DBDFD0] px-4 py-2 sm:py-3 w-full text-sm sm:text-base"
 								labelClassName="text-[#2C2F24] font-semibold pb-2 sm:pb-3 text-sm sm:text-base"
 								value={formData.phone}
 								onChange={handleChange}
-								onBlur={handleBlur}
+									onBlur={handleBlur}
 								required
 							/>
 							<div className="w-full">
